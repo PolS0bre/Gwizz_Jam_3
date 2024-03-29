@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtx5edhcdyd6h"]
+
+[ext_resource type="PackedScene" uid="uid://chfhb1s8m0sao" path="res://Models/Punches/Jab.glb" id="1_8wcvd"]
+[ext_resource type="Texture2D" uid="uid://uwnexux24xtt" path="res://Models/Punches/Jab_Jab Material.png" id="2_83xw6"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="3_wlgcm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ot05"]
+render_priority = 0
+shader = ExtResource("3_wlgcm")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.05
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwk15"]
+next_pass = SubResource("ShaderMaterial_1ot05")
+albedo_texture = ExtResource("2_83xw6")
+
+[node name="Jab" instance=ExtResource("1_8wcvd")]
+
+[node name="Jab_Model" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wwk15")

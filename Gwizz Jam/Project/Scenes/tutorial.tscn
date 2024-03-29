@@ -1,0 +1,409 @@
+[gd_scene load_steps=31 format=3 uid="uid://dtoja5ydebnm1"]
+
+[ext_resource type="Script" path="res://Scripts/tutorial.gd" id="1_lpopq"]
+[ext_resource type="FontFile" uid="uid://60tekby4anph" path="res://Fonts/KleinHeadline-BoldOblique.ttf" id="2_ds2mi"]
+[ext_resource type="FontFile" uid="uid://cvqir03l6n8a6" path="res://Fonts/Kemco Pixel Bold.ttf" id="3_poumn"]
+[ext_resource type="Texture2D" uid="uid://cjhgxpvwecyt4" path="res://Sprites/Button_Icons/Right_Icon.png" id="3_wun05"]
+[ext_resource type="Texture2D" uid="uid://b2gh6i65201ja" path="res://Sprites/UI/Attack_Indicator.png" id="4_2vfvf"]
+[ext_resource type="Texture2D" uid="uid://xnmget0ej64y" path="res://Sprites/Button_Icons/X_Icon.png" id="4_pyep0"]
+[ext_resource type="Texture2D" uid="uid://bk14gg555pfgs" path="res://Sprites/Button_Icons/Left_Icon.png" id="7_p8n5x"]
+[ext_resource type="VideoStream" path="res://Video_Files/Attack.ogv" id="7_shvtu"]
+[ext_resource type="Texture2D" uid="uid://drhyhi7sy00bq" path="res://Sprites/NPCs/Gwizz/Gwizz OW.png" id="8_1j1c7"]
+[ext_resource type="VideoStream" path="res://Video_Files/Defense.ogv" id="9_7dk2x"]
+[ext_resource type="Texture2D" uid="uid://dnv1oypeehtcc" path="res://Sprites/NPCs/Tanz/Tanz OW.png" id="9_txkw8"]
+[ext_resource type="Texture2D" uid="uid://b5ywep7jfi3qb" path="res://Sprites/NPCs/EvilMailman/Evil Mailman OW.png" id="10_62783"]
+[ext_resource type="Texture2D" uid="uid://diqlhjd58giae" path="res://Sprites/NPCs/Bojangles/Bojangles OW.png" id="11_35fak"]
+[ext_resource type="Texture2D" uid="uid://dyahgmwre75rt" path="res://Sprites/NPCs/Light/Light OW.png" id="12_mqf1x"]
+[ext_resource type="Texture2D" uid="uid://cxupbrbuswo43" path="res://Sprites/NPCs/McFeelzz/McFeelzz OW.png" id="13_tt4xj"]
+[ext_resource type="Texture2D" uid="uid://bxfp5sjh10ryv" path="res://Sprites/Player OW.png" id="14_cb5p8"]
+[ext_resource type="PackedScene" uid="uid://c6yho3cnswsgm" path="res://Objects/3D Models/ring.tscn" id="14_cw8uw"]
+[ext_resource type="Texture2D" uid="uid://14dy67c3vihb" path="res://Sprites/Enemies/Glep.png" id="15_dhesr"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="17_rpbu2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4fud"]
+font = ExtResource("2_ds2mi")
+font_size = 100
+font_color = Color(1, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvm13"]
+line_spacing = 8.0
+font = ExtResource("3_poumn")
+font_size = 20
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4dv4"]
+bg_color = Color(0.247059, 0.247059, 0.247059, 0.305882)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6sci"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bvx8w"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nf53"]
+albedo_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_acquo"]
+sky_top_color = Color(0.305882, 0.721569, 0.909804, 1)
+sky_horizon_color = Color(0.168627, 0.572549, 0.745098, 1)
+ground_bottom_color = Color(0.0235294, 0.180392, 0.243137, 1)
+ground_horizon_color = Color(0.168627, 0.572549, 0.745098, 1)
+
+[sub_resource type="Sky" id="Sky_wrvpn"]
+sky_material = SubResource("ProceduralSkyMaterial_acquo")
+
+[sub_resource type="Environment" id="Environment_134oc"]
+background_mode = 2
+sky = SubResource("Sky_wrvpn")
+ambient_light_source = 3
+ambient_light_color = Color(0.807843, 0.886275, 0.32549, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcfrf"]
+render_priority = 0
+shader = ExtResource("17_rpbu2")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.025
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66oei"]
+next_pass = SubResource("ShaderMaterial_dcfrf")
+albedo_color = Color(1, 1, 0.847059, 1)
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_lpopq")
+
+[node name="Base" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="Base"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 146.0
+grow_horizontal = 2
+text = "COMBAT"
+label_settings = SubResource("LabelSettings_a4fud")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Content" type="Label" parent="Base"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -336.0
+offset_top = 201.0
+offset_right = 345.0
+offset_bottom = 480.0
+grow_horizontal = 2
+text = "THE COMBAT IS DIVIDED IN TWO PHASES: ATTACK AND DEFENSE. THE ATTACKER WILL DO A COMBO OF 4 ATTACKS, AND THE DEFENDER HAS TO DODGE THEM, IF THIS HAPPENS THE ROLES ARE REVERTED. 
+
+TO KNOW WHO IS ATTACKING THERE WILL BE THE RED ICON BELOW UNDER THE PLAYER ICON"
+label_settings = SubResource("LabelSettings_pvm13")
+autowrap_mode = 3
+
+[node name="Next_Icon" type="TextureRect" parent="Base"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -20.0
+offset_right = -162.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.55, 2.55)
+texture = ExtResource("3_wun05")
+
+[node name="Combat_Icon" type="TextureRect" parent="Base"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -239.0
+offset_right = 128.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_2vfvf")
+
+[node name="Panel" type="Panel" parent="Base"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u4dv4")
+
+[node name="Panel2" type="Panel" parent="Base"]
+modulate = Color(0.27451, 0.27451, 0.27451, 1)
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.180556
+anchor_right = 0.796007
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u4dv4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Attack" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Title" type="Label" parent="Attack"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 146.0
+grow_horizontal = 2
+text = "ATTACK"
+label_settings = SubResource("LabelSettings_a4fud")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Attack"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -20.0
+offset_right = -162.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.55, 2.55)
+texture = ExtResource("3_wun05")
+
+[node name="TextureRect2" type="TextureRect" parent="Attack"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1078.0
+offset_top = -20.0
+offset_right = -1038.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.55, 2.55)
+texture = ExtResource("7_p8n5x")
+
+[node name="Panel" type="Panel" parent="Attack"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u4dv4")
+
+[node name="Panel2" type="Panel" parent="Attack"]
+modulate = Color(0.27451, 0.27451, 0.27451, 1)
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.180556
+anchor_right = 0.796007
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u4dv4")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Attack"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Attack"]
+anchors_preset = -1
+anchor_left = 0.251736
+anchor_top = 0.311728
+anchor_right = 0.751736
+anchor_bottom = 0.815432
+offset_right = 1344.0
+offset_bottom = 761.6
+scale = Vector2(0.3, 0.3)
+stream = ExtResource("7_shvtu")
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Defense" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Title" type="Label" parent="Defense"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 146.0
+grow_horizontal = 2
+text = "DEFENSE"
+label_settings = SubResource("LabelSettings_a4fud")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Defense"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -20.0
+offset_right = -162.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.55, 2.55)
+texture = ExtResource("4_pyep0")
+
+[node name="TextureRect2" type="TextureRect" parent="Defense"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1078.0
+offset_top = -20.0
+offset_right = -1038.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.55, 2.55)
+texture = ExtResource("7_p8n5x")
+
+[node name="Panel" type="Panel" parent="Defense"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u4dv4")
+
+[node name="Panel2" type="Panel" parent="Defense"]
+modulate = Color(0.27451, 0.27451, 0.27451, 1)
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.180556
+anchor_right = 0.796007
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u4dv4")
+metadata/_edit_use_anchors_ = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Defense"]
+anchors_preset = -1
+anchor_left = 0.251736
+anchor_top = 0.311728
+anchor_right = 0.751736
+anchor_bottom = 0.815432
+offset_right = -39.0
+offset_bottom = -27.4
+scale = Vector2(0.3, 0.3)
+stream = ExtResource("9_7dk2x")
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[node name="FloorBody" type="StaticBody3D" parent="."]
+
+[node name="FloorCol" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_q6sci")
+
+[node name="WorldWall1" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, -5.5)
+shape = SubResource("BoxShape3D_q6sci")
+
+[node name="WorldWall2" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 5.5)
+shape = SubResource("BoxShape3D_q6sci")
+
+[node name="WorldWall3" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 5.5, 2, 0)
+shape = SubResource("BoxShape3D_q6sci")
+
+[node name="WorldWall4" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5.5, 2, 0)
+shape = SubResource("BoxShape3D_q6sci")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="FloorBody"]
+mesh = SubResource("PlaneMesh_bvx8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_5nf53")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="FloorBody"]
+environment = SubResource("Environment_134oc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="FloorBody/WorldEnvironment"]
+transform = Transform3D(0.980826, 0.107187, -0.162761, 0, 0.835165, 0.55, 0.194885, -0.539454, 0.819151, -4.6785, 0, 7.52203)
+
+[node name="Publico" type="Node3D" parent="FloorBody"]
+
+[node name="Sprite3D" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.25516, 0.554258, -3.10349)
+billboard = 2
+texture = ExtResource("8_1j1c7")
+
+[node name="Sprite3D12" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.24054, 0.554258, -2.83487)
+billboard = 2
+texture = ExtResource("9_txkw8")
+
+[node name="Sprite3D2" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -3.10585, 0.554258, -2.11652)
+billboard = 2
+texture = ExtResource("10_62783")
+
+[node name="Sprite3D4" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.92228, 0.554258, -2.70808)
+billboard = 2
+texture = ExtResource("11_35fak")
+
+[node name="Sprite3D5" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.95145, 0.554258, -2.67251)
+billboard = 2
+texture = ExtResource("12_mqf1x")
+
+[node name="Sprite3D11" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.50803, 0.554258, -1.17638)
+billboard = 2
+texture = ExtResource("13_tt4xj")
+
+[node name="Sprite3D3" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.5625, 0, 0, 0, 0.5625, 0, 0, 0, 0.5625, -0.0339808, 1.22353, 1.14323)
+billboard = 2
+texture = ExtResource("14_cb5p8")
+
+[node name="Sprite3D6" type="Sprite3D" parent="FloorBody/Publico"]
+transform = Transform3D(0.5625, 0, 0, 0, 0.5625, 0, 0, 0, 0.5625, -0.0339808, 1.22353, -0.781075)
+billboard = 2
+texture = ExtResource("15_dhesr")
+
+[node name="Ring" parent="FloorBody" instance=ExtResource("14_cw8uw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.358248, 0)
+
+[node name="RandBox1" type="CSGBox3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117547, 0)
+use_collision = true
+size = Vector3(3, 0.5, 3)
+material = SubResource("StandardMaterial3D_66oei")
+
+[node name="Camera3D" type="Camera3D" parent="FloorBody"]
+transform = Transform3D(0.891007, 0.155274, -0.426612, 0, 0.939693, 0.34202, 0.453991, -0.304742, 0.837272, -1.945, 1.701, 1.346)

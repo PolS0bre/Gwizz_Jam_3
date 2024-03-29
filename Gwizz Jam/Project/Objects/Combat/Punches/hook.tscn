@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ye26igrq3a80"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/Punches/Types/hook.gd" id="1_blkii"]
+[ext_resource type="PackedScene" uid="uid://bf0hdyrkcjmnj" path="res://Objects/3D Models/Punches/hook.tscn" id="2_w12ln"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xxhgh"]
+radius = 0.042
+
+[node name="Hook" type="Node3D"]
+script = ExtResource("1_blkii")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["Punch"]]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_xxhgh")
+
+[node name="hook" parent="RigidBody3D" instance=ExtResource("2_w12ln")]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, -0.233564, 0, 0)
+
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

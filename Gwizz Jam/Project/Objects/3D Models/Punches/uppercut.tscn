@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0k50hjm483jy"]
+
+[ext_resource type="PackedScene" path="res://Models/Punches/Uppercut.glb" id="1_y175q"]
+[ext_resource type="Texture2D" uid="uid://42jl06pxxx30" path="res://Models/Punches/Uppercut_Uppercut Material.png" id="2_kn7od"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="3_jjgo3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a25h4"]
+render_priority = 0
+shader = ExtResource("3_jjgo3")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.05
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i4s6"]
+next_pass = SubResource("ShaderMaterial_a25h4")
+albedo_texture = ExtResource("2_kn7od")
+
+[node name="Uppercut" instance=ExtResource("1_y175q")]
+
+[node name="Upp_Model" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6i4s6")

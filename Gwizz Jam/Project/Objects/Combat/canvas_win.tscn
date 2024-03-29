@@ -1,0 +1,167 @@
+[gd_scene load_steps=10 format=3 uid="uid://cffjowpu7y6ub"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/WinLose_UI.gd" id="1_bu83f"]
+[ext_resource type="Texture2D" uid="uid://8jwwj3133aqo" path="res://Sprites/UI/Win Box.png" id="1_op0lt"]
+[ext_resource type="FontFile" uid="uid://cvqir03l6n8a6" path="res://Fonts/Kemco Pixel Bold.ttf" id="2_kufyx"]
+[ext_resource type="Texture2D" uid="uid://xnmget0ej64y" path="res://Sprites/Button_Icons/X_Icon.png" id="3_67b3d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8g5q"]
+font = ExtResource("2_kufyx")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_ncq6v"]
+font = ExtResource("2_kufyx")
+font_size = 30
+
+[sub_resource type="Animation" id="Animation_h8tae"]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinLose:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WinLose/WL_Text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WinLose/ContinueText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qe5nt"]
+resource_name = "winner"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinLose:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WinLose/WL_Text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WinLose/ContinueText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e0jq0"]
+_data = {
+"RESET": SubResource("Animation_h8tae"),
+"winner": SubResource("Animation_qe5nt")
+}
+
+[node name="Canvas_Win" type="CanvasLayer"]
+script = ExtResource("1_bu83f")
+
+[node name="WinLose" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -510.5
+offset_top = -510.5
+offset_right = 510.5
+offset_bottom = 510.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_op0lt")
+
+[node name="WL_Text" type="Label" parent="WinLose"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = 5.0
+offset_right = 273.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_o8g5q")
+
+[node name="ContinueText" type="Label" parent="WinLose"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = 199.0
+offset_right = 273.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS   TO CONTINUE"
+label_settings = SubResource("LabelSettings_ncq6v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="WinLose/ContinueText"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 21.0
+offset_right = 223.0
+offset_bottom = 61.0
+texture = ExtResource("3_67b3d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e0jq0")
+}

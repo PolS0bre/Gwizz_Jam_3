@@ -1,0 +1,22 @@
+[gd_resource type="Shader" format=3 uid="uid://b2kql007w8m2o"]
+
+[resource]
+code = "shader_type spatial;
+render_mode unshaded, cull_front;
+
+uniform bool enable = true;
+uniform float outline_thickness = 0.025;
+uniform vec4 color : source_color = vec4(1.0);
+
+void vertex(){
+	if(enable){
+		VERTEX += normalize(VERTEX) * outline_thickness;
+	}
+}
+
+void fragment() {
+	if(enable){
+		ALBEDO = color.rgb;
+	}
+}
+"

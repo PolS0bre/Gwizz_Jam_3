@@ -1,0 +1,283 @@
+[gd_scene load_steps=20 format=3 uid="uid://b64fj5n33yw3u"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/player_combat.gd" id="1_icht2"]
+[ext_resource type="Texture2D" uid="uid://d1ffngikvbjim" path="res://Sprites/UI/Attack_Box.png" id="2_57ip4"]
+[ext_resource type="Texture2D" uid="uid://cicrpt82lr8oa" path="res://Sprites/Player Icon.png" id="2_evhtq"]
+[ext_resource type="Texture2D" uid="uid://b2x6s2k1lfpkf" path="res://Sprites/Button_Icons/Empty.png" id="3_3cu64"]
+[ext_resource type="Texture2D" uid="uid://b7x15k6v5thpn" path="res://Sprites/Enemies/Glep Icon.png" id="3_atkl2"]
+[ext_resource type="Texture2D" uid="uid://b2gh6i65201ja" path="res://Sprites/UI/Attack_Indicator.png" id="4_2a3pw"]
+[ext_resource type="Texture2D" uid="uid://c71j5dp0o62su" path="res://Sprites/UI/Vs Icon.png" id="6_yq38w"]
+[ext_resource type="FontFile" uid="uid://cvqir03l6n8a6" path="res://Fonts/Kemco Pixel Bold.ttf" id="8_ltdij"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7krkk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2x367"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6skxd"]
+bg_color = Color(0.054902, 0.054902, 0.054902, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 4
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcdqq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3au5h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ip2w"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0fq1"]
+bg_color = Color(0.054902, 0.054902, 0.054902, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 4
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw0sw"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bd233"]
+font = ExtResource("8_ltdij")
+font_size = 60
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rngya"]
+margin = 0.0
+radius = 0.125
+height = 0.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uw6mu"]
+radius = 0.25
+height = 1.0
+
+[node name="Player_Combat" type="Node3D" groups=["Player"]]
+script = ExtResource("1_icht2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+fov = 70.0
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Attack_UI" type="CanvasLayer" parent="GUI"]
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Attack_UI"]
+anchors_preset = -1
+anchor_left = 0.279514
+anchor_top = 0.441358
+anchor_right = 0.723959
+anchor_bottom = 0.675926
+offset_left = -102.0
+offset_right = -358.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_57ip4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Move1" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 284.0
+offset_top = 346.0
+offset_right = 324.0
+offset_bottom = 386.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Move2" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 502.0
+offset_top = 346.0
+offset_right = 542.0
+offset_bottom = 386.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Move3" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 642.0
+offset_top = 346.0
+offset_right = 682.0
+offset_bottom = 386.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Move4" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 865.0
+offset_top = 346.0
+offset_right = 905.0
+offset_bottom = 386.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Att1" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 284.0
+offset_top = 417.0
+offset_right = 324.0
+offset_bottom = 457.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Att2" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 502.0
+offset_top = 417.0
+offset_right = 542.0
+offset_bottom = 457.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Att3" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 642.0
+offset_top = 417.0
+offset_right = 682.0
+offset_bottom = 457.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Att4" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 865.0
+offset_top = 417.0
+offset_right = 905.0
+offset_bottom = 457.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3cu64")
+
+[node name="Attacking" type="TextureRect" parent="GUI/Attack_UI"]
+offset_left = 98.0
+offset_top = 175.0
+offset_right = 354.0
+offset_bottom = 251.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_2a3pw")
+
+[node name="Defense_UI" type="CanvasLayer" parent="GUI"]
+visible = false
+
+[node name="Attacking" type="TextureRect" parent="GUI/Defense_UI"]
+offset_left = 925.0
+offset_top = 175.0
+offset_right = 1181.0
+offset_bottom = 251.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_2a3pw")
+
+[node name="General_UI" type="CanvasLayer" parent="GUI"]
+
+[node name="Player_Icon" type="TextureRect" parent="GUI/General_UI"]
+anchors_preset = -1
+anchor_left = 0.0868056
+anchor_top = 0.0771605
+anchor_right = 0.195313
+anchor_bottom = 0.270062
+texture = ExtResource("2_evhtq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemy_Icon" type="TextureRect" parent="GUI/General_UI"]
+anchors_preset = -1
+anchor_left = 0.804688
+anchor_top = 0.0771605
+anchor_right = 0.913194
+anchor_bottom = 0.270062
+texture = ExtResource("3_atkl2")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayHPBar" type="ProgressBar" parent="GUI/General_UI"]
+anchors_preset = -1
+anchor_left = 0.206597
+anchor_top = 0.152778
+anchor_right = 0.46441
+anchor_bottom = 0.271605
+offset_bottom = 1.52588e-05
+theme_override_styles/background = SubResource("StyleBoxEmpty_7krkk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2x367")
+value = 100.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDMGBar" type="ProgressBar" parent="GUI/General_UI/PlayHPBar"]
+z_index = -1
+layout_mode = 0
+offset_right = 297.0
+offset_bottom = 77.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6skxd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fcdqq")
+value = 100.0
+show_percentage = false
+
+[node name="PlayerTimer" type="Timer" parent="GUI/General_UI/PlayHPBar"]
+wait_time = 0.35
+one_shot = true
+
+[node name="EnemyHPBar" type="ProgressBar" parent="GUI/General_UI"]
+offset_left = 621.0
+offset_top = 99.0
+offset_right = 918.0
+offset_bottom = 176.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_3au5h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5ip2w")
+value = 100.0
+show_percentage = false
+
+[node name="EnemyDMGBar" type="ProgressBar" parent="GUI/General_UI/EnemyHPBar"]
+z_index = -1
+layout_mode = 0
+offset_right = 297.0
+offset_bottom = 77.0
+theme_override_styles/background = SubResource("StyleBoxFlat_o0fq1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fw0sw")
+value = 100.0
+show_percentage = false
+
+[node name="EnemyTimer" type="Timer" parent="GUI/General_UI/EnemyHPBar"]
+wait_time = 0.35
+one_shot = true
+
+[node name="Vs" type="TextureRect" parent="GUI/General_UI"]
+anchors_preset = -1
+anchor_left = 0.474826
+anchor_top = 0.160494
+anchor_right = 0.52908
+anchor_bottom = 0.256945
+offset_right = 62.5003
+offset_bottom = 62.5001
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_yq38w")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="GUI/General_UI"]
+anchors_preset = -1
+anchor_left = 0.357205
+anchor_top = 0.0308642
+anchor_right = 0.642795
+anchor_bottom = 0.104938
+grow_horizontal = 2
+text = "ROUND 1"
+label_settings = SubResource("LabelSettings_bd233")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.469904, 0)
+shape = SubResource("CapsuleShape3D_rngya")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221977, 0)
+mesh = SubResource("CapsuleMesh_uw6mu")
+
+[connection signal="timeout" from="GUI/General_UI/PlayHPBar/PlayerTimer" to="." method="_on_player_timer_timeout"]
+[connection signal="timeout" from="GUI/General_UI/EnemyHPBar/EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

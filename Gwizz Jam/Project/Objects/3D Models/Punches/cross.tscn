@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bolsilgga6nm3"]
+
+[ext_resource type="PackedScene" uid="uid://hvasmuiag0dw" path="res://Models/Punches/Cross.glb" id="1_hgxv3"]
+[ext_resource type="Texture2D" uid="uid://b6iv0gsvv12sf" path="res://Models/Punches/Cross_Cross Material.png" id="2_gubch"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="3_6clb8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfoux"]
+render_priority = 0
+shader = ExtResource("3_6clb8")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.05
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6y5l"]
+next_pass = SubResource("ShaderMaterial_cfoux")
+albedo_texture = ExtResource("2_gubch")
+
+[node name="Cross" instance=ExtResource("1_hgxv3")]
+
+[node name="Cross_Model" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_p6y5l")

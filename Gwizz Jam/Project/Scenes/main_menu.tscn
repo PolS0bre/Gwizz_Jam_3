@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://ctur6clv40mre"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_712vi"]
+[ext_resource type="Texture2D" uid="uid://bxfp5sjh10ryv" path="res://Sprites/Player OW.png" id="1_n0i65"]
+[ext_resource type="PackedScene" uid="uid://c6yho3cnswsgm" path="res://Objects/3D Models/ring.tscn" id="2_hk85s"]
+[ext_resource type="Texture2D" uid="uid://bfnks7vxvvyia" path="res://Sprites/Enemies/MrFrog.png" id="2_r72gw"]
+[ext_resource type="Texture2D" uid="uid://14dy67c3vihb" path="res://Sprites/Enemies/Glep.png" id="3_hrhyo"]
+[ext_resource type="Texture2D" uid="uid://dapqc3xnmrcow" path="res://Sprites/Enemies/Alan.png" id="3_yb511"]
+[ext_resource type="FontFile" uid="uid://60tekby4anph" path="res://Fonts/KleinHeadline-BoldOblique.ttf" id="4_cnfjf"]
+[ext_resource type="FontFile" uid="uid://cvqir03l6n8a6" path="res://Fonts/Kemco Pixel Bold.ttf" id="7_tsu6e"]
+[ext_resource type="Texture2D" uid="uid://xnmget0ej64y" path="res://Sprites/Button_Icons/X_Icon.png" id="8_08qgd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lxel3"]
+sky_top_color = Color(0.0784314, 0.113725, 0.137255, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+sky_curve = 0.103778
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.0823529, 0.0862745, 0.0901961, 1)
+
+[sub_resource type="Sky" id="Sky_wnf5b"]
+sky_material = SubResource("ProceduralSkyMaterial_lxel3")
+
+[sub_resource type="Environment" id="Environment_0p3ys"]
+background_mode = 2
+sky = SubResource("Sky_wnf5b")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lqlwg"]
+font = ExtResource("4_cnfjf")
+font_size = 100
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 1, 1, 0.278431)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_masfr"]
+font = ExtResource("7_tsu6e")
+
+[sub_resource type="LabelSettings" id="LabelSettings_02sjx"]
+font = ExtResource("7_tsu6e")
+font_size = 40
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main Menu" type="Node3D"]
+script = ExtResource("1_712vi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00343776, -0.0106227, 2.34225)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0p3ys")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.720297, 0.693666, 0, -0.693666, 0.720297, 0, 0, 0)
+
+[node name="Player" type="Sprite3D" parent="."]
+transform = Transform3D(0.974189, 0, -0.225733, 0, 1, 0, 0.225733, 0, 0.974189, 0.896032, -1.07662, -1.01105)
+texture = ExtResource("1_n0i65")
+
+[node name="MrFrog" type="Sprite3D" parent="."]
+transform = Transform3D(0.997392, 0, -0.0721764, 0, 1, 0, 0.0721764, 0, 0.997392, 0.896032, -1.07662, -4.01105)
+texture = ExtResource("2_r72gw")
+
+[node name="Glep" type="Sprite3D" parent="."]
+transform = Transform3D(0.974189, 0, -0.225733, 0, 1, 0, 0.225733, 0, 0.974189, 2.58614, -1.07662, -4.01105)
+texture = ExtResource("3_hrhyo")
+
+[node name="Alan" type="Sprite3D" parent="."]
+transform = Transform3D(0.961555, 0, 0.274614, 0, 1, 0, -0.274614, 0, 0.961555, -0.738157, -1.07662, -4.01105)
+texture = ExtResource("3_yb511")
+
+[node name="Ring" parent="." instance=ExtResource("2_hk85s")]
+transform = Transform3D(1.67459, 0, 0, 0, 1.67459, 0, 0, 0, 1.67459, 0.935, -2.438, -2.826)
+
+[node name="Menu_Layer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="Menu_Layer"]
+offset_left = 33.0
+offset_top = 40.0
+offset_right = 877.0
+offset_bottom = 162.0
+text = "GWIZZ BOXING GYM"
+label_settings = SubResource("LabelSettings_lqlwg")
+
+[node name="Author" type="Label" parent="Menu_Layer"]
+anchors_preset = -1
+anchor_left = 0.0286458
+anchor_top = 0.936728
+anchor_right = 0.21875
+anchor_bottom = 0.981481
+text = "Made by Pol16ako"
+label_settings = SubResource("LabelSettings_masfr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Press to play" type="Label" parent="Menu_Layer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = 142.0
+offset_right = 184.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS    TO PLAY"
+label_settings = SubResource("LabelSettings_02sjx")
+
+[node name="X_Button" type="TextureRect" parent="Menu_Layer"]
+offset_left = 510.0
+offset_top = 446.0
+offset_right = 550.0
+offset_bottom = 486.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_08qgd")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0716889, 0.997427, 0, -0.997427, 0.0716889, 0.626264, 4.80075, -0.861574)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+light_size = 0.475
+shadow_enabled = true
+spot_range = 15.973
+spot_angle = 10.39

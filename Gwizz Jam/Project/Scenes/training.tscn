@@ -1,0 +1,142 @@
+[gd_scene load_steps=22 format=3 uid="uid://dw2cf6m6q7jvc"]
+
+[ext_resource type="Script" path="res://Scripts/Training/training_manager.gd" id="1_xmeds"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="2_y8ca6"]
+[ext_resource type="PackedScene" uid="uid://iidia78pfijs" path="res://Objects/player_training.tscn" id="3_g47e5"]
+[ext_resource type="Texture2D" uid="uid://drhyhi7sy00bq" path="res://Sprites/NPCs/Gwizz/Gwizz OW.png" id="5_qx78c"]
+[ext_resource type="PackedScene" uid="uid://bx0ilvkgkh0n6" path="res://Objects/3D Models/enemy_saco.tscn" id="5_rk27m"]
+[ext_resource type="Texture2D" uid="uid://dnv1oypeehtcc" path="res://Sprites/NPCs/Tanz/Tanz OW.png" id="6_csoc0"]
+[ext_resource type="Texture2D" uid="uid://b5ywep7jfi3qb" path="res://Sprites/NPCs/EvilMailman/Evil Mailman OW.png" id="7_4bsrd"]
+[ext_resource type="Texture2D" uid="uid://diqlhjd58giae" path="res://Sprites/NPCs/Bojangles/Bojangles OW.png" id="8_vr5ua"]
+[ext_resource type="Texture2D" uid="uid://dyahgmwre75rt" path="res://Sprites/NPCs/Light/Light OW.png" id="9_3loa2"]
+[ext_resource type="Texture2D" uid="uid://cxupbrbuswo43" path="res://Sprites/NPCs/McFeelzz/McFeelzz OW.png" id="10_64co8"]
+[ext_resource type="PackedScene" uid="uid://c6yho3cnswsgm" path="res://Objects/3D Models/ring.tscn" id="11_4f05n"]
+[ext_resource type="PackedScene" uid="uid://cffjowpu7y6ub" path="res://Objects/Combat/canvas_win.tscn" id="12_yp3sn"]
+[ext_resource type="AudioStream" uid="uid://b65unlagolu5u" path="res://Audio/Combat Music.mp3" id="13_676o7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b35b4"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gwd0e"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd76e"]
+albedo_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwdyi"]
+render_priority = 0
+shader = ExtResource("2_y8ca6")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.025
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh25l"]
+next_pass = SubResource("ShaderMaterial_dwdyi")
+albedo_color = Color(1, 1, 0.847059, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_onb1y"]
+sky_top_color = Color(0.305882, 0.721569, 0.909804, 1)
+sky_horizon_color = Color(0.168627, 0.572549, 0.745098, 1)
+ground_bottom_color = Color(0.0235294, 0.180392, 0.243137, 1)
+ground_horizon_color = Color(0.168627, 0.572549, 0.745098, 1)
+
+[sub_resource type="Sky" id="Sky_8s3dy"]
+sky_material = SubResource("ProceduralSkyMaterial_onb1y")
+
+[sub_resource type="Environment" id="Environment_etfp8"]
+background_mode = 2
+sky = SubResource("Sky_8s3dy")
+ambient_light_source = 3
+ambient_light_color = Color(0.807843, 0.886275, 0.32549, 1)
+
+[node name="Testing" type="Node3D"]
+script = ExtResource("1_xmeds")
+
+[node name="FloorBody" type="StaticBody3D" parent="."]
+
+[node name="FloorCol" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_b35b4")
+
+[node name="WorldWall1" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, -5.5)
+shape = SubResource("BoxShape3D_b35b4")
+
+[node name="WorldWall2" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 5.5)
+shape = SubResource("BoxShape3D_b35b4")
+
+[node name="WorldWall3" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 5.5, 2, 0)
+shape = SubResource("BoxShape3D_b35b4")
+
+[node name="WorldWall4" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5.5, 2, 0)
+shape = SubResource("BoxShape3D_b35b4")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="FloorBody"]
+mesh = SubResource("PlaneMesh_gwd0e")
+surface_material_override/0 = SubResource("StandardMaterial3D_wd76e")
+
+[node name="RandBox1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117547, 0)
+use_collision = true
+size = Vector3(3, 0.5, 3)
+material = SubResource("StandardMaterial3D_bh25l")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_etfp8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.980826, 0.107187, -0.162761, 0, 0.835165, 0.55, 0.194885, -0.539454, 0.819151, -4.6785, 0, 7.52203)
+
+[node name="Player_Combat2" parent="." instance=ExtResource("3_g47e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.75)
+
+[node name="Enemy_Saco" parent="." instance=ExtResource("5_rk27m")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 1.1, -0.960652)
+
+[node name="Publico" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.25516, 0.554258, -3.10349)
+billboard = 2
+texture = ExtResource("5_qx78c")
+
+[node name="Sprite3D12" type="Sprite3D" parent="Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.24054, 0.554258, -2.83487)
+billboard = 2
+texture = ExtResource("6_csoc0")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -3.10585, 0.554258, -2.11652)
+billboard = 2
+texture = ExtResource("7_4bsrd")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.92228, 0.554258, -2.70808)
+billboard = 2
+texture = ExtResource("8_vr5ua")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.95145, 0.554258, -2.67251)
+billboard = 2
+texture = ExtResource("9_3loa2")
+
+[node name="Sprite3D11" type="Sprite3D" parent="Publico"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.50803, 0.554258, -1.17638)
+billboard = 2
+texture = ExtResource("10_64co8")
+
+[node name="Ring" parent="." instance=ExtResource("11_4f05n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.358248, 0)
+
+[node name="Canvas_Win" parent="." instance=ExtResource("12_yp3sn")]
+
+[node name="Combat_Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_676o7")
+volume_db = -10.0
+autoplay = true
+
+[node name="SFX_Audio" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0

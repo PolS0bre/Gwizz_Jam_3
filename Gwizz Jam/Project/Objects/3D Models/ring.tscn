@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6yho3cnswsgm"]
+
+[ext_resource type="PackedScene" uid="uid://b47orsc7nhghl" path="res://Models/Ring.glb" id="1_q8cym"]
+[ext_resource type="Script" path="res://Scripts/Interactible/ring.gd" id="2_poxwk"]
+[ext_resource type="Texture2D" uid="uid://c13l310hhgbbf" path="res://Models/Saco_Saco Material.png" id="3_1rvla"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="3_ca7nr"]
+[ext_resource type="Texture2D" uid="uid://xnmget0ej64y" path="res://Sprites/Button_Icons/X_Icon.png" id="4_dnk1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06xhr"]
+render_priority = 0
+shader = ExtResource("3_ca7nr")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.025
+shader_parameter/color = Color(1, 1, 1, 0.556863)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beva7"]
+next_pass = SubResource("ShaderMaterial_06xhr")
+albedo_texture = ExtResource("3_1rvla")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhwft"]
+size = Vector3(3, 0.383716, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gho2e"]
+
+[node name="Ring" instance=ExtResource("1_q8cym")]
+script = ExtResource("2_poxwk")
+
+[node name="Ring_Model" parent="." index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 0.188, 0, 0, 0, 1.5, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_beva7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" groups=["Interactible"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184441, 0)
+shape = SubResource("BoxShape3D_jhwft")
+
+[node name="Interact_Icon" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(3.7519, 0, 0, 0, 3.7519, 0, 0, 0, 3.7519, 0, 1.76798, 0)
+visible = false
+material_overlay = SubResource("ShaderMaterial_gho2e")
+billboard = 1
+texture = ExtResource("4_dnk1s")

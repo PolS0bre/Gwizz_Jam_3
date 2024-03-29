@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0w50bhrrow13"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/Punches/Types/uppercut.gd" id="1_sd1ln"]
+[ext_resource type="PackedScene" uid="uid://d0k50hjm483jy" path="res://Objects/3D Models/Punches/uppercut.tscn" id="2_vah22"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xxhgh"]
+radius = 0.042
+
+[node name="Uppercut" type="Node3D"]
+script = ExtResource("1_sd1ln")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["Punch"]]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_xxhgh")
+
+[node name="Uppercut" parent="RigidBody3D" instance=ExtResource("2_vah22")]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, -0.313535, -0.182173, -2.98023e-08)
+
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

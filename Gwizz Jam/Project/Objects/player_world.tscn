@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ynyxc66v60x"]
+
+[ext_resource type="Script" path="res://Scripts/player_world_cont.gd" id="1_yiopb"]
+[ext_resource type="Texture2D" uid="uid://bxfp5sjh10ryv" path="res://Sprites/Player OW.png" id="2_aa3hj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8dc4h"]
+size = Vector3(0.487335, 0.802979, 0.574707)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sx0qw"]
+radius = 0.897729
+
+[node name="Player_World" type="CharacterBody3D"]
+script = ExtResource("1_yiopb")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57764e-05, -0.00231934, -0.000845075)
+shape = SubResource("BoxShape3D_8dc4h")
+
+[node name="Interact_Area" type="Area3D" parent="."]
+
+[node name="Interact_Collision" type="CollisionShape3D" parent="Interact_Area"]
+shape = SubResource("SphereShape3D_sx0qw")
+
+[node name="Player_Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.552136, 0, 0, 0, 0.552136, 0, 0, 0, 0.552136, 0, 0, 0)
+billboard = 2
+texture = ExtResource("2_aa3hj")
+
+[node name="Camera_focus" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19584, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera_focus"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 2.5, 2.5, 2.5)
+
+[connection signal="body_entered" from="Interact_Area" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="Interact_Area" to="." method="_on_interact_area_body_exited"]

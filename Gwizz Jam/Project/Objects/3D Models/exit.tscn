@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnmvilv7xq8dm"]
+
+[ext_resource type="PackedScene" uid="uid://b47orsc7nhghl" path="res://Models/Ring.glb" id="1_7cose"]
+[ext_resource type="Script" path="res://Scripts/Interactible/exit.gd" id="2_ov6gg"]
+[ext_resource type="Texture2D" uid="uid://c13l310hhgbbf" path="res://Models/Saco_Saco Material.png" id="3_v4vnw"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="4_7l34j"]
+[ext_resource type="Texture2D" uid="uid://xnmget0ej64y" path="res://Sprites/Button_Icons/X_Icon.png" id="5_smrsp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06xhr"]
+render_priority = 0
+shader = ExtResource("4_7l34j")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.025
+shader_parameter/color = Color(1, 1, 1, 0.556863)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beva7"]
+next_pass = SubResource("ShaderMaterial_06xhr")
+albedo_texture = ExtResource("3_v4vnw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhwft"]
+size = Vector3(3, 0.383716, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gho2e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ar8wp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fcmb"]
+render_priority = 0
+shader = ExtResource("4_7l34j")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.025
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baxts"]
+next_pass = SubResource("ShaderMaterial_8fcmb")
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Exit" instance=ExtResource("1_7cose")]
+script = ExtResource("2_ov6gg")
+
+[node name="Ring_Model" parent="." index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 0.188, 0, 0, 0, 1.5, 0, 0, 0)
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_beva7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" groups=["Interactible"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184441, 0)
+shape = SubResource("BoxShape3D_jhwft")
+
+[node name="Interact_Icon" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(2.43992, 0, 0, 0, 2.43992, 0, 0, 0, 2.43992, 0, 1.76798, 0)
+visible = false
+material_overlay = SubResource("ShaderMaterial_gho2e")
+billboard = 1
+texture = ExtResource("5_smrsp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(2.9801, 0, 0, 0, 0.383676, 0, 0, 0, 1.44842, 0, 0.168229, 0)
+mesh = SubResource("BoxMesh_ar8wp")
+surface_material_override/0 = SubResource("StandardMaterial3D_baxts")

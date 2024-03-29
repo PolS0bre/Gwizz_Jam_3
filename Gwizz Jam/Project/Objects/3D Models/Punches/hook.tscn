@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf0hdyrkcjmnj"]
+
+[ext_resource type="PackedScene" uid="uid://fnmq824omo1u" path="res://Models/Punches/hook.glb" id="1_3kysd"]
+[ext_resource type="Texture2D" uid="uid://cn5mip5mtmqj8" path="res://Models/Punches/hook_Hook Material.png" id="2_tdy33"]
+[ext_resource type="Shader" uid="uid://b2kql007w8m2o" path="res://Shaders/outline.tres" id="3_w0s8b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdak5"]
+render_priority = 0
+shader = ExtResource("3_w0s8b")
+shader_parameter/enable = true
+shader_parameter/outline_thickness = 0.05
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j23nb"]
+next_pass = SubResource("ShaderMaterial_mdak5")
+albedo_texture = ExtResource("2_tdy33")
+
+[node name="hook" instance=ExtResource("1_3kysd")]
+
+[node name="Hook_Model" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_j23nb")

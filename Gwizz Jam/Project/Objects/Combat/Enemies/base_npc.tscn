@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmde1pa2su0kl"]
+
+[ext_resource type="Texture2D" uid="uid://doo0837kiig7p" path="res://Sprites/Base Character.png" id="1_0265s"]
+[ext_resource type="Script" path="res://Scripts/Interactible/base_npc.gd" id="1_kqp1k"]
+[ext_resource type="Texture2D" uid="uid://xnmget0ej64y" path="res://Sprites/Button_Icons/X_Icon.png" id="2_uvd4u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsqlf"]
+size = Vector3(0.487335, 0.802979, 0.574707)
+
+[node name="BaseNPC" type="Node3D"]
+script = ExtResource("1_kqp1k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Interactible"]]
+
+[node name="Collision" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57764e-05, -0.00231934, -0.000845075)
+shape = SubResource("BoxShape3D_hsqlf")
+
+[node name="Sprite_Character" type="Sprite3D" parent="."]
+transform = Transform3D(0.552, 0, 0, 0, 0.552, 0, 0, 0, 0.552, 0, 0, 0)
+flip_h = true
+billboard = 2
+texture = ExtResource("1_0265s")
+
+[node name="Interact_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1.98267, 0, 0, 0, 1.98267, 0, 0, 0, 1.98267, 0, 0.698327, 0)
+visible = false
+billboard = 1
+double_sided = false
+texture = ExtResource("2_uvd4u")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://roc1rydthve0"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/Enemies/enemy_base.gd" id="1_2nrd5"]
+[ext_resource type="Texture2D" uid="uid://doo0837kiig7p" path="res://Sprites/Base Character.png" id="1_l60q4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0igtq"]
+margin = 0.0
+radius = 0.125
+height = 0.25
+
+[node name="Enemy_Base" type="Node3D" groups=["Enemy"]]
+script = ExtResource("1_2nrd5")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_l60q4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405674, 0)
+shape = SubResource("CapsuleShape3D_0igtq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
